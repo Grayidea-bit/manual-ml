@@ -22,8 +22,8 @@ class ReLU:
         self.mask = None  # cache: where the input was positive
 
     def forward(self, x: np.ndarray) -> np.ndarray:
-        # TODO(week1): cache the positive mask, return max(0, x)
-        raise NotImplementedError("ReLU.forward")
+        self.mask = x > 0 # cache which positions were positive; backward passes gradient only there
+        return np.maximum(0, x) # ReLU: negatives -> 0, positives unchanged
 
     def backward(self, grad_output: np.ndarray) -> np.ndarray:
         # TODO(week2): pass the gradient through only where the input was positive
@@ -41,5 +41,6 @@ def softmax(logits: np.ndarray) -> np.ndarray:
 
         p_i = exp(z_i - max(z)) / sum_j exp(z_j - max(z))
     """
-    # TODO(week1): implement the stable row-wise softmax
-    raise NotImplementedError("softmax")
+    l_max = logits.max(axis=1, keepdims=True) #find the biggest value of each row, output: (N, 1)
+    e = np.exp(logits - l_max)   # exp after subtracting row max -> no 
+    return e / e.sum(axis=1, keepdims=True)  # normalize each row so it sums to 1
