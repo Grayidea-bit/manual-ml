@@ -45,8 +45,10 @@ class Linear:
         self.x = None
 
     def forward(self, x: np.ndarray) -> np.ndarray:
-        # TODO(week1): cache x for backward, then return x @ W + b
-        raise NotImplementedError("Linear.forward")
+        self.x = x # cache input for backward (needed for dW = x.T @ dy)
+        z = np.dot(x, self.W) + self.b # y = xW + b, bias broadcast to every row
+        return z
+        
 
     def backward(self, grad_output: np.ndarray) -> np.ndarray:
         # TODO(week2): set self.dW, self.db from the cached x and grad_output,
