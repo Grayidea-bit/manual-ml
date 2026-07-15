@@ -34,10 +34,12 @@ class SoftmaxCrossEntropy:
         self.y = None      # cache: labels, (N,)
 
     def forward(self, logits: np.ndarray, y: np.ndarray) -> float:
-        # TODO(week1): compute probs = softmax(logits); cache probs and y;
-        # return the mean cross-entropy loss as a Python float.
-        # Hint: add a tiny epsilon (e.g. 1e-12) inside log to avoid log(0).
-        raise NotImplementedError("SoftmaxCrossEntropy.forward")
+        self.y = y #self.y = correct class label for each sample; cache for backward
+        probs = softmax(logits) #Get the confidences for every classes
+        self.probs = probs # confidence for each of the 10 classes, per sample
+        N = logits.shape[0] # number of samples in this batch (rows)
+        correct_probs = probs[np.arange(N), y] # Take the confidence of the real class of the data
+        return float(np.mean(-np.log(correct_probs + 1e-12))) # mean cross-entropy loss (lower = better)
 
     def backward(self) -> np.ndarray:
         # TODO(week2): return (probs - onehot(y)) / N using the cached values.
