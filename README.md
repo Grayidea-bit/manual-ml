@@ -60,12 +60,12 @@ python experiments/optimizer_compare.py  # produce experiments/optimizer_compare
 
 ## Learning roadmap
 
-| Week | Topic | Status |
+| Date / Period | Topic | Status |
 |------|-------|--------|
-| 1 | Forward pass: Linear, ReLU, softmax + cross-entropy | in progress |
-| 2 | Backpropagation + SGD; gradient checking; train to convergence | — |
-| 3 | Adam from the update equations; SGD vs Adam | — |
-| 4 | Evolutionary optimizer; three-way comparison + figure | — |
+| 26-07-15 | Forward pass: Linear, ReLU, softmax + cross-entropy | DONE |
+|  | Backpropagation + SGD; gradient checking; train to convergence | — |
+|  | Adam from the update equations; SGD vs Adam | — |
+|  | Evolutionary optimizer; three-way comparison + figure | — |
 
 Part of a broader self-study track; a separate repository will cover the NLP
 project (weeks 5–8).
