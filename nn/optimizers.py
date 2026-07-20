@@ -25,9 +25,8 @@ class SGD:
         self.lr = lr
 
     def step(self) -> None:
-        # TODO(week2): for each (p, g) in self.model.params_and_grads(),
-        # update p in place by -lr * g.
-        raise NotImplementedError("SGD.step")
+        for (p, g) in self.model.params_and_grads():
+            p -= self.lr * g
 
 
 class Adam:
