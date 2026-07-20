@@ -48,12 +48,12 @@ class Linear:
         self.x = x # cache input for backward (needed for dW = x.T @ dy)
         z = np.dot(x, self.W) + self.b # y = xW + b, bias broadcast to every row
         return z
-        
+
 
     def backward(self, grad_output: np.ndarray) -> np.ndarray:
-        # TODO(week2): set self.dW, self.db from the cached x and grad_output,
-        # then return the gradient w.r.t. the input (dL/dx).
-        raise NotImplementedError("Linear.backward")
+        self.dW = self.x.T @ grad_output
+        self.db = grad_output.sum(axis=0)
+        return grad_output @ self.W.T
 
     def params_and_grads(self):
         return [(self.W, self.dW), (self.b, self.db)]

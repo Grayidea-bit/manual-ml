@@ -63,7 +63,7 @@ python experiments/optimizer_compare.py  # produce experiments/optimizer_compare
 | Date / Period | Topic | Status |
 |------|-------|--------|
 | 26-07-15 | Forward pass: Linear, ReLU, softmax + cross-entropy | DONE |
-|  | Backpropagation + SGD; gradient checking; train to convergence | — |
+| 26-07-20 | Backpropagation + SGD; gradient checking; train to convergence | DONE |
 |  | Adam from the update equations; SGD vs Adam | — |
 |  | Evolutionary optimizer; three-way comparison + figure | — |
 
