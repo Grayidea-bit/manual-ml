@@ -26,8 +26,7 @@ class ReLU:
         return np.maximum(0, x) # ReLU: negatives -> 0, positives unchanged
 
     def backward(self, grad_output: np.ndarray) -> np.ndarray:
-        return grad_output > 0 and self.mask > 0
-
+        return grad_output * self.mask # gradient flows only where x was positive
 
     def params_and_grads(self):
         return []  # ReLU has no parameters
