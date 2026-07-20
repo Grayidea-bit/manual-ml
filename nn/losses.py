@@ -42,7 +42,7 @@ class SoftmaxCrossEntropy:
         return float(np.mean(-np.log(correct_probs + 1e-12))) # mean cross-entropy loss (lower = better)
 
     def backward(self) -> np.ndarray:
-        onehot = np.zeros_like(self.probs)
-        N = self.probs.shape[0]
-        onehot[np.arange(N), self.y] = 1
-        return onehot
+        onehot = np.zeros_like(self.probs) # Get Zero matrix
+        N = self.probs.shape[0] # batch size (number of rows)
+        onehot[np.arange(N), self.y] = 1 # set the answer to 1
+        return (self.probs - onehot) / N # get the result
