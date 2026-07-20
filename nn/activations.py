@@ -26,8 +26,8 @@ class ReLU:
         return np.maximum(0, x) # ReLU: negatives -> 0, positives unchanged
 
     def backward(self, grad_output: np.ndarray) -> np.ndarray:
-        # TODO(week2): pass the gradient through only where the input was positive
-        raise NotImplementedError("ReLU.backward")
+        return grad_output > 0 and self.mask > 0
+
 
     def params_and_grads(self):
         return []  # ReLU has no parameters
@@ -42,5 +42,5 @@ def softmax(logits: np.ndarray) -> np.ndarray:
         p_i = exp(z_i - max(z)) / sum_j exp(z_j - max(z))
     """
     l_max = logits.max(axis=1, keepdims=True) #find the biggest value of each row, output: (N, 1)
-    e = np.exp(logits - l_max)   # exp after subtracting row max -> no 
+    e = np.exp(logits - l_max)   # exp after subtracting row max -> no
     return e / e.sum(axis=1, keepdims=True)  # normalize each row so it sums to 1
